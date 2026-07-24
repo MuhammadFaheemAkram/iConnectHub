@@ -19,7 +19,7 @@ import SwiftData
 /// - Every mutation re-queries the cache and emits to both list and per-post
 ///   observers.
 @MainActor
-final class DefaultFeedRepository: FeedRepository, PostRepository {
+final class DefaultFeedRepository: FeedRepository, PostRepository, BookmarkRepository {
     private let service: FeedService
     /// Held strongly so the store outlives the repository; the context is the
     /// container's main context (dropping the container invalidates the context).
@@ -27,6 +27,7 @@ final class DefaultFeedRepository: FeedRepository, PostRepository {
     private var context: ModelContext { container.mainContext }
     private var continuations: [UUID: AsyncStream<[Post]>.Continuation] = [:]
     private var postContinuations: [UUID: (id: String, continuation: AsyncStream<Post?>.Continuation)] = [:]
+    private var bookmarkContinuations: [UUID: AsyncStream<[Post]>.Continuation] = [:]
 
     init(service: FeedService, container: ModelContainer) {
         self.service = service
@@ -124,6 +125,19 @@ final class DefaultFeedRepository: FeedRepository, PostRepository {
         emit(currentPosts())
     }
 
+    // MARK: - BookmarkRepository
+
+    func bookmarksStream() -> AsyncStream<[Post]> {
+        let (stream, continuation) = AsyncStream<[Post]>.makeStream()
+        let id = UUID()
+        bookmarkContinuations[id] = continuation
+        continuation.yield(currentPosts().filter(\.isBookmarked))
+        continuation.onTermination = { [weak self] _ in
+            Task { @MainActor in self?.bookmarkContinuations[id] = nil }
+        }
+        return stream
+    }
+
     // MARK: - Cache access
 
     private func currentPosts() -> [Post] {
@@ -164,6 +178,12 @@ final class DefaultFeedRepository: FeedRepository, PostRepository {
         }
         for (_, entry) in postContinuations {
             entry.continuation.yield(posts.first { $0.id == entry.id })
+        }
+        if !bookmarkContinuations.isEmpty {
+            let bookmarks = posts.filter(\.isBookmarked)
+            for continuation in bookmarkContinuations.values {
+                continuation.yield(bookmarks)
+            }
         }
     }
 }

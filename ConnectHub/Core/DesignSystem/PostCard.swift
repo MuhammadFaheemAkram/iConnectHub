@@ -16,12 +16,15 @@ struct PostCard: View {
     var onBookmark: () -> Void = {}
     var onComment: () -> Void = {}
     var onOpen: () -> Void = {}
+    var onAuthor: () -> Void = {}
 
     var body: some View {
         VStack(alignment: .leading, spacing: CHSpacing.md) {
+            Button(action: onAuthor) { header }
+                .buttonStyle(.plain)
+
             Button(action: onOpen) {
                 VStack(alignment: .leading, spacing: CHSpacing.md) {
-                    header
                     Text(post.content)
                         .font(CHTypography.body)
                         .foregroundStyle(CHColor.textPrimary)

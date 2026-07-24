@@ -18,10 +18,10 @@ struct MainFlowView: View {
         @Bindable var router = router
         TabView(selection: $router.selectedTab) {
             tabStack(.feed) { FeedView(environment: environment) }
-            tabStack(.search) { SearchView() }
-            tabStack(.bookmarks) { BookmarksView() }
+            tabStack(.search) { SearchView(environment: environment) }
+            tabStack(.bookmarks) { BookmarksView(environment: environment) }
             tabStack(.notifications) { NotificationsView() }
-            tabStack(.profile) { ProfileView() }
+            tabStack(.profile) { ProfileView(environment: environment) }
         }
         .tint(CHColor.brand)
         .environment(router)
@@ -53,7 +53,7 @@ struct MainFlowView: View {
         case .comments(let postId):
             CommentsView(environment: environment, postId: postId)
         case .userProfile(let id):
-            ProfileView(userId: id)
+            ProfileView(environment: environment, userId: id)
         case .chatList:
             ChatListView()
         case .chatDetail(let conversationId):

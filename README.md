@@ -2,7 +2,7 @@
 
 A mini social app for iOS — a simplified LinkedIn/Twitter-style feed with messaging — built as a portfolio-quality reference project. ConnectHub is fully offline: there is no real backend. Every network call is served by a fake service layer (bundled JSON + simulated latency) so the app is deterministic, testable, and runnable anywhere.
 
-> **Status:** Built in strict, documented phases. **Phases 1–4 complete** (foundation, fake auth & session, offline-first feed, post detail + comments + create post). See the [Roadmap](#roadmap) for what each phase delivers and [`docs/`](docs/) for per-phase deep-dives.
+> **Status:** Built in strict, documented phases. **Phases 1–5 complete** (foundation, fake auth & session, offline-first feed, post detail + comments + create post, search + bookmarks + profile). See the [Roadmap](#roadmap) for what each phase delivers and [`docs/`](docs/) for per-phase deep-dives.
 
 ---
 
@@ -31,7 +31,7 @@ Planned end-state capabilities:
 | 2 | Fake auth + persisted session | ✅ Complete |
 | 3 | Feed + fake network + offline cache | ✅ Complete |
 | 4 | Post detail, comments, create post | ✅ Complete |
-| 5 | Search, bookmarks, profile, edit profile | ⏳ Planned |
+| 5 | Search, bookmarks, profile, edit profile | ✅ Complete |
 | 6 | Chat, notifications, settings | ⏳ Planned |
 | 7 | Open-source polish (docs, CI) | ⏳ Planned |
 
@@ -180,6 +180,7 @@ From Phase 2, ConnectHub uses **Swift Testing** (`@Test`, `#expect`, `#require`)
 - [`docs/PHASE_2_SUMMARY.md`](docs/PHASE_2_SUMMARY.md) — Fake auth + session deep-dive
 - [`docs/PHASE_3_SUMMARY.md`](docs/PHASE_3_SUMMARY.md) — Feed + offline SwiftData cache deep-dive
 - [`docs/PHASE_4_SUMMARY.md`](docs/PHASE_4_SUMMARY.md) — Post detail, comments, and create post deep-dive
+- [`docs/PHASE_5_SUMMARY.md`](docs/PHASE_5_SUMMARY.md) — Search, bookmarks, and profile deep-dive
 - Additional per-phase summaries, `ARCHITECTURE.md`, `TESTING.md`, `LEARNING_NOTES.md`, `INTERVIEW_NOTES.md`, and `ROADMAP.md` are added by their respective phases.
 
 ## Screenshots

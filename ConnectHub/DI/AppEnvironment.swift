@@ -41,6 +41,11 @@ final class AppEnvironment {
     let commentService: CommentService
     let commentRepository: CommentRepository
 
+    // Search / bookmarks / profile
+    let searchRepository: SearchRepository
+    let bookmarkRepository: BookmarkRepository
+    let profileRepository: ProfileRepository
+
     // Auth use cases
     let loginUseCase: LoginUseCase
     let signUpUseCase: SignUpUseCase
@@ -58,7 +63,10 @@ final class AppEnvironment {
         feedRepository: FeedRepository,
         postRepository: PostRepository,
         commentService: CommentService,
-        commentRepository: CommentRepository
+        commentRepository: CommentRepository,
+        searchRepository: SearchRepository,
+        bookmarkRepository: BookmarkRepository,
+        profileRepository: ProfileRepository
     ) {
         self.modelContainer = modelContainer
         self.sessionStore = sessionStore
@@ -71,6 +79,9 @@ final class AppEnvironment {
         self.postRepository = postRepository
         self.commentService = commentService
         self.commentRepository = commentRepository
+        self.searchRepository = searchRepository
+        self.bookmarkRepository = bookmarkRepository
+        self.profileRepository = profileRepository
         self.loginUseCase = LoginUseCase(authRepository: authRepository, sessionRepository: sessionRepository)
         self.signUpUseCase = SignUpUseCase(authRepository: authRepository, sessionRepository: sessionRepository)
         self.logoutUseCase = LogoutUseCase(sessionRepository: sessionRepository)
@@ -84,7 +95,8 @@ final class AppEnvironment {
         let authService = FakeAuthService()
         let feedService = FakeFeedService()
         let commentService = FakeCommentService()
-        // One repository backs both the feed list and single-post operations.
+        let sessionRepository = DefaultSessionRepository(store: sessionStore)
+        // One repository backs the feed list, single posts, and bookmarks.
         let postsRepository = DefaultFeedRepository(service: feedService, container: modelContainer)
         return AppEnvironment(
             modelContainer: modelContainer,
@@ -92,12 +104,15 @@ final class AppEnvironment {
             settingsStore: SettingsStore(),
             authService: authService,
             authRepository: DefaultAuthRepository(service: authService),
-            sessionRepository: DefaultSessionRepository(store: sessionStore),
+            sessionRepository: sessionRepository,
             feedService: feedService,
             feedRepository: postsRepository,
             postRepository: postsRepository,
             commentService: commentService,
-            commentRepository: DefaultCommentRepository(service: commentService, container: modelContainer)
+            commentRepository: DefaultCommentRepository(service: commentService, container: modelContainer),
+            searchRepository: DefaultSearchRepository(container: modelContainer),
+            bookmarkRepository: postsRepository,
+            profileRepository: DefaultProfileRepository(sessionRepository: sessionRepository)
         )
     }
 
@@ -142,6 +157,39 @@ final class AppEnvironment {
             refreshComments: RefreshCommentsUseCase(repository: commentRepository),
             addComment: AddCommentUseCase(commentRepository: commentRepository, postRepository: postRepository, sessionRepository: sessionRepository),
             deleteComment: DeleteCommentUseCase(commentRepository: commentRepository, postRepository: postRepository)
+        )
+    }
+
+    func makeSearchViewModel() -> SearchViewModel {
+        SearchViewModel(
+            search: SearchUseCase(repository: searchRepository),
+            observeRecent: ObserveRecentSearchesUseCase(repository: searchRepository),
+            addRecent: AddRecentSearchUseCase(repository: searchRepository),
+            clearRecent: ClearRecentSearchesUseCase(repository: searchRepository)
+        )
+    }
+
+    func makeBookmarksViewModel() -> BookmarksViewModel {
+        BookmarksViewModel(
+            observeBookmarks: ObserveBookmarksUseCase(repository: bookmarkRepository),
+            bookmarkPost: BookmarkPostUseCase(repository: feedRepository),
+            likePost: LikePostUseCase(repository: feedRepository)
+        )
+    }
+
+    func makeProfileViewModel(userId: String?) -> ProfileViewModel {
+        ProfileViewModel(
+            userId: userId,
+            observeProfile: ObserveProfileUseCase(repository: profileRepository),
+            observeFeed: ObserveFeedUseCase(repository: feedRepository),
+            logout: logoutUseCase
+        )
+    }
+
+    func makeEditProfileViewModel() -> EditProfileViewModel {
+        EditProfileViewModel(
+            profile: profileRepository.currentProfile(),
+            updateProfile: UpdateProfileUseCase(repository: profileRepository)
         )
     }
 }
