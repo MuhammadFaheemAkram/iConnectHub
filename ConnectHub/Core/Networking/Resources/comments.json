@@ -1,0 +1,79 @@
+[
+  {
+    "id": "c1",
+    "postId": "p1",
+    "author": { "id": "u_grace", "name": "Grace Hopper", "avatarURL": "https://i.pravatar.cc/300?img=9", "bio": "", "followersCount": 9120, "followingCount": 87 },
+    "text": "Naming is the second-hardest problem in computer science. Congrats on shipping!",
+    "createdAt": "2026-07-24T08:40:00Z"
+  },
+  {
+    "id": "c2",
+    "postId": "p1",
+    "author": { "id": "u_alan", "name": "Alan Turing", "avatarURL": "https://i.pravatar.cc/300?img=12", "bio": "", "followersCount": 7340, "followingCount": 143 },
+    "text": "What did you land on for the loop names in the end?",
+    "createdAt": "2026-07-24T09:02:00Z"
+  },
+  {
+    "id": "c3",
+    "postId": "p1",
+    "author": { "id": "u_katherine", "name": "Katherine Johnson", "avatarURL": "https://i.pravatar.cc/300?img=25", "bio": "", "followersCount": 6210, "followingCount": 205 },
+    "text": "The image is stunning too. 🏔️",
+    "createdAt": "2026-07-24T10:15:00Z"
+  },
+  {
+    "id": "c4",
+    "postId": "p2",
+    "author": { "id": "u_ada", "name": "Ada Lovelace", "avatarURL": "https://i.pravatar.cc/300?img=5", "bio": "", "followersCount": 4820, "followingCount": 312 },
+    "text": "Framing this and putting it above my desk.",
+    "createdAt": "2026-07-24T07:05:00Z"
+  },
+  {
+    "id": "c5",
+    "postId": "p2",
+    "author": { "id": "u_linus", "name": "Linus T.", "avatarURL": "https://i.pravatar.cc/300?img=33", "bio": "", "followersCount": 15200, "followingCount": 12 },
+    "text": "Counterpoint: sometimes we've always done it that way because it works.",
+    "createdAt": "2026-07-24T07:22:00Z"
+  },
+  {
+    "id": "c6",
+    "postId": "p2",
+    "author": { "id": "u_grace", "name": "Grace Hopper", "avatarURL": "https://i.pravatar.cc/300?img=9", "bio": "", "followersCount": 9120, "followingCount": 87 },
+    "text": "@Linus fair — but measure it before you defend it. 😄",
+    "createdAt": "2026-07-24T07:41:00Z"
+  },
+  {
+    "id": "c7",
+    "postId": "p3",
+    "author": { "id": "u_katherine", "name": "Katherine Johnson", "avatarURL": "https://i.pravatar.cc/300?img=25", "bio": "", "followersCount": 6210, "followingCount": 205 },
+    "text": "Flaky tests are just non-determinism you haven't named yet.",
+    "createdAt": "2026-07-23T19:30:00Z"
+  },
+  {
+    "id": "c8",
+    "postId": "p3",
+    "author": { "id": "u_ada", "name": "Ada Lovelace", "avatarURL": "https://i.pravatar.cc/300?img=5", "bio": "", "followersCount": 4820, "followingCount": 312 },
+    "text": "Retry-with-backoff is not a fix, it's a coping mechanism.",
+    "createdAt": "2026-07-23T20:11:00Z"
+  },
+  {
+    "id": "c9",
+    "postId": "p5",
+    "author": { "id": "u_ada", "name": "Ada Lovelace", "avatarURL": "https://i.pravatar.cc/300?img=5", "bio": "", "followersCount": 4820, "followingCount": 312 },
+    "text": "We all know which PR. We've all written which PR.",
+    "createdAt": "2026-07-23T11:35:00Z"
+  },
+  {
+    "id": "c10",
+    "postId": "p5",
+    "author": { "id": "u_grace", "name": "Grace Hopper", "avatarURL": "https://i.pravatar.cc/300?img=9", "bio": "", "followersCount": 9120, "followingCount": 87 },
+    "text": "Approved with 12 comments, as tradition demands.",
+    "createdAt": "2026-07-23T12:01:00Z"
+  },
+  {
+    "id": "c11",
+    "postId": "p10",
+    "author": { "id": "u_alan", "name": "Alan Turing", "avatarURL": "https://i.pravatar.cc/300?img=12", "bio": "", "followersCount": 7340, "followingCount": 143 },
+    "text": "“Often that person is you” hits harder every year.",
+    "createdAt": "2026-07-21T10:20:00Z"
+  }
+]

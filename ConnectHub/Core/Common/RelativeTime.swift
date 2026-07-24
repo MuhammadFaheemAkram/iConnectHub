@@ -17,6 +17,8 @@ enum RelativeTime {
     }()
 
     static func string(from date: Date, relativeTo now: Date = Date()) -> String {
-        formatter.localizedString(for: date, relativeTo: now)
+        // Avoid "in 0 seconds" for just-created content.
+        if abs(date.timeIntervalSince(now)) < 5 { return "now" }
+        return formatter.localizedString(for: date, relativeTo: now)
     }
 }

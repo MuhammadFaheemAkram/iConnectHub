@@ -26,7 +26,7 @@ struct MainFlowView: View {
         .tint(CHColor.brand)
         .environment(router)
         .sheet(isPresented: $router.isPresentingCreatePost) {
-            CreatePostView()
+            CreatePostView(environment: environment)
         }
     }
 
@@ -49,9 +49,9 @@ struct MainFlowView: View {
     private func destination(for route: MainRoute) -> some View {
         switch route {
         case .postDetail(let id):
-            PostDetailView(postId: id)
+            PostDetailView(environment: environment, postId: id)
         case .comments(let postId):
-            CommentsView(postId: postId)
+            CommentsView(environment: environment, postId: postId)
         case .userProfile(let id):
             ProfileView(userId: id)
         case .chatList:

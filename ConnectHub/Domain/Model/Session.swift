@@ -18,3 +18,12 @@ struct Session: Codable, Equatable, Sendable {
     let email: String
     let token: String
 }
+
+extension Session {
+    /// The signed-in user as a domain `User`, used when authoring posts and
+    /// comments. Profile details (avatar, bio, counts) are filled in Phase 5.
+    var asAuthor: User {
+        User(id: userId, name: displayName, avatarURL: nil, bio: "",
+             followersCount: 0, followingCount: 0)
+    }
+}

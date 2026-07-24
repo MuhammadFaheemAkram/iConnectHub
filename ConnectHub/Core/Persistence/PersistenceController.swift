@@ -13,7 +13,8 @@ import SwiftData
 enum PersistenceController {
     /// Every `@Model` type in the app. Add new models here as phases introduce them.
     static let schema = Schema([
-        PostEntity.self
+        PostEntity.self,
+        CommentEntity.self
     ])
 
     static func makeContainer(inMemory: Bool = false) -> ModelContainer {

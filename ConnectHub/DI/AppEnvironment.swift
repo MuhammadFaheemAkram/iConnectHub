@@ -32,9 +32,14 @@ final class AppEnvironment {
     let authRepository: AuthRepository
     let sessionRepository: SessionRepository
 
-    // Feed graph
+    // Feed / post graph (one store backs both the feed list and single posts)
     let feedService: FeedService
     let feedRepository: FeedRepository
+    let postRepository: PostRepository
+
+    // Comment graph
+    let commentService: CommentService
+    let commentRepository: CommentRepository
 
     // Auth use cases
     let loginUseCase: LoginUseCase
@@ -50,7 +55,10 @@ final class AppEnvironment {
         authRepository: AuthRepository,
         sessionRepository: SessionRepository,
         feedService: FeedService,
-        feedRepository: FeedRepository
+        feedRepository: FeedRepository,
+        postRepository: PostRepository,
+        commentService: CommentService,
+        commentRepository: CommentRepository
     ) {
         self.modelContainer = modelContainer
         self.sessionStore = sessionStore
@@ -60,6 +68,9 @@ final class AppEnvironment {
         self.sessionRepository = sessionRepository
         self.feedService = feedService
         self.feedRepository = feedRepository
+        self.postRepository = postRepository
+        self.commentService = commentService
+        self.commentRepository = commentRepository
         self.loginUseCase = LoginUseCase(authRepository: authRepository, sessionRepository: sessionRepository)
         self.signUpUseCase = SignUpUseCase(authRepository: authRepository, sessionRepository: sessionRepository)
         self.logoutUseCase = LogoutUseCase(sessionRepository: sessionRepository)
@@ -72,6 +83,9 @@ final class AppEnvironment {
         let sessionStore = SessionStore()
         let authService = FakeAuthService()
         let feedService = FakeFeedService()
+        let commentService = FakeCommentService()
+        // One repository backs both the feed list and single-post operations.
+        let postsRepository = DefaultFeedRepository(service: feedService, container: modelContainer)
         return AppEnvironment(
             modelContainer: modelContainer,
             sessionStore: sessionStore,
@@ -80,7 +94,10 @@ final class AppEnvironment {
             authRepository: DefaultAuthRepository(service: authService),
             sessionRepository: DefaultSessionRepository(store: sessionStore),
             feedService: feedService,
-            feedRepository: DefaultFeedRepository(service: feedService, container: modelContainer)
+            feedRepository: postsRepository,
+            postRepository: postsRepository,
+            commentService: commentService,
+            commentRepository: DefaultCommentRepository(service: commentService, container: modelContainer)
         )
     }
 
@@ -96,6 +113,35 @@ final class AppEnvironment {
             refreshFeed: RefreshFeedUseCase(repository: feedRepository),
             likePost: LikePostUseCase(repository: feedRepository),
             bookmarkPost: BookmarkPostUseCase(repository: feedRepository)
+        )
+    }
+
+    func makeCreatePostViewModel() -> CreatePostViewModel {
+        CreatePostViewModel(
+            createPost: CreatePostUseCase(postRepository: postRepository, sessionRepository: sessionRepository)
+        )
+    }
+
+    func makePostDetailViewModel(postId: String) -> PostDetailViewModel {
+        PostDetailViewModel(
+            postId: postId,
+            observePost: ObservePostUseCase(repository: postRepository),
+            getDetails: GetPostDetailsUseCase(repository: postRepository),
+            observeComments: ObserveCommentsUseCase(repository: commentRepository),
+            refreshComments: RefreshCommentsUseCase(repository: commentRepository),
+            addComment: AddCommentUseCase(commentRepository: commentRepository, postRepository: postRepository, sessionRepository: sessionRepository),
+            likePost: LikePostUseCase(repository: feedRepository),
+            bookmarkPost: BookmarkPostUseCase(repository: feedRepository)
+        )
+    }
+
+    func makeCommentsViewModel(postId: String) -> CommentsViewModel {
+        CommentsViewModel(
+            postId: postId,
+            observeComments: ObserveCommentsUseCase(repository: commentRepository),
+            refreshComments: RefreshCommentsUseCase(repository: commentRepository),
+            addComment: AddCommentUseCase(commentRepository: commentRepository, postRepository: postRepository, sessionRepository: sessionRepository),
+            deleteComment: DeleteCommentUseCase(commentRepository: commentRepository, postRepository: postRepository)
         )
     }
 }
