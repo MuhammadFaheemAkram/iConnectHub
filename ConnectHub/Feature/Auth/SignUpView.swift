@@ -7,45 +7,54 @@
 
 import SwiftUI
 
-/// Account creation screen. Phase 1 provides the form and a fake account
-/// creation that signs the user straight in; Phase 2 adds field validation and
-/// a `SignUpUseCase`.
+/// Account-creation screen backed by `SignUpViewModel`: per-field validation,
+/// a loading button, and inline error handling. Success signs the new user in.
 struct SignUpView: View {
     @Binding var path: [AuthRoute]
-    @Environment(AppEnvironment.self) private var environment
+    @State private var model: SignUpViewModel
 
-    @State private var name = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
+    init(path: Binding<[AuthRoute]>, signUpUseCase: SignUpUseCase) {
+        self._path = path
+        self._model = State(initialValue: SignUpViewModel(signUp: signUpUseCase))
+    }
 
     var body: some View {
+        @Bindable var model = model
         ScrollView {
             VStack(spacing: CHSpacing.lg) {
-                CHTextField(title: "Name", text: $name,
+                CHTextField(title: "Name", text: $model.name,
                             placeholder: "Your name",
                             systemImage: "person",
+                            error: model.nameError,
                             textContentType: .name,
                             autocapitalization: .words)
-                CHTextField(title: "Email", text: $email,
+                CHTextField(title: "Email", text: $model.email,
                             placeholder: "you@example.com",
                             systemImage: "envelope",
+                            error: model.emailError,
                             keyboard: .emailAddress,
                             textContentType: .emailAddress,
                             autocapitalization: .never)
-                CHTextField(title: "Password", text: $password,
+                CHTextField(title: "Password", text: $model.password,
                             placeholder: "Create a password",
                             systemImage: "lock",
                             isSecure: true,
+                            error: model.passwordError,
                             textContentType: .newPassword)
-                CHTextField(title: "Confirm Password", text: $confirmPassword,
+                CHTextField(title: "Confirm Password", text: $model.confirmPassword,
                             placeholder: "Re-enter your password",
                             systemImage: "lock.rotation",
                             isSecure: true,
+                            error: model.confirmError,
                             textContentType: .newPassword)
 
-                CHButton(title: "Create Account", systemImage: "person.badge.plus") {
-                    createAccount()
+                if let generalError = model.generalError {
+                    CHErrorBanner(message: generalError)
+                }
+
+                CHButton(title: "Create Account", systemImage: "person.badge.plus",
+                         isLoading: model.isLoading) {
+                    Task { await model.createAccount() }
                 }
                 .padding(.top, CHSpacing.sm)
             }
@@ -55,16 +64,5 @@ struct SignUpView: View {
         .navigationTitle("Create Account")
         .navigationBarTitleDisplayMode(.inline)
         .scrollDismissesKeyboard(.interactively)
-    }
-
-    /// Phase 1 placeholder: seeds a demo session from the entered details.
-    private func createAccount() {
-        let session = Session(
-            userId: UUID().uuidString,
-            displayName: name.isEmpty ? "New User" : name,
-            email: email.isEmpty ? "new@connecthub.app" : email,
-            token: UUID().uuidString
-        )
-        environment.sessionStore.signIn(session)
     }
 }

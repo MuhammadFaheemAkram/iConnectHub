@@ -7,36 +7,48 @@
 
 import SwiftUI
 
-/// Sign-in screen. Phase 1 wires up the layout and a fake sign-in that seeds a
-/// session so the main app is reachable. Phase 2 replaces the action with real
-/// validation, loading/error states and a `LoginUseCase`.
+/// Sign-in screen backed by `LoginViewModel`: validated fields, a loading
+/// button, and inline error handling. Success seeds the session and the root
+/// switches to the main app.
 struct LoginView: View {
     @Binding var path: [AuthRoute]
-    @Environment(AppEnvironment.self) private var environment
+    @State private var model: LoginViewModel
 
-    @State private var email = ""
-    @State private var password = ""
+    init(path: Binding<[AuthRoute]>, loginUseCase: LoginUseCase) {
+        self._path = path
+        self._model = State(initialValue: LoginViewModel(login: loginUseCase))
+    }
 
     var body: some View {
+        @Bindable var model = model
         ScrollView {
             VStack(spacing: CHSpacing.xl) {
                 header
+
                 VStack(spacing: CHSpacing.lg) {
-                    CHTextField(title: "Email", text: $email,
+                    CHTextField(title: "Email", text: $model.email,
                                 placeholder: "you@example.com",
                                 systemImage: "envelope",
+                                error: model.emailError,
                                 keyboard: .emailAddress,
                                 textContentType: .emailAddress,
                                 autocapitalization: .never)
-                    CHTextField(title: "Password", text: $password,
+                    CHTextField(title: "Password", text: $model.password,
                                 placeholder: "Your password",
                                 systemImage: "lock",
                                 isSecure: true,
+                                error: model.passwordError,
                                 textContentType: .password)
                 }
+
+                if let generalError = model.generalError {
+                    CHErrorBanner(message: generalError)
+                }
+
                 VStack(spacing: CHSpacing.md) {
-                    CHButton(title: "Sign In", systemImage: "arrow.right") {
-                        signIn()
+                    CHButton(title: "Sign In", systemImage: "arrow.right",
+                             isLoading: model.isLoading) {
+                        Task { await model.signIn() }
                     }
                     Button {
                         path.append(.signUp)
@@ -66,16 +78,5 @@ struct LoginView: View {
                 .foregroundStyle(CHColor.textSecondary)
         }
         .padding(.top, CHSpacing.xxl)
-    }
-
-    /// Phase 1 placeholder: accepts any input and seeds a demo session.
-    private func signIn() {
-        let session = Session(
-            userId: UUID().uuidString,
-            displayName: "Demo User",
-            email: email.isEmpty ? "demo@connecthub.app" : email,
-            token: UUID().uuidString
-        )
-        environment.sessionStore.signIn(session)
     }
 }

@@ -7,18 +7,9 @@
 
 import Foundation
 
-/// The signed-in user's session. In this demo the token is a locally generated
-/// string; Phase 2 formalizes fake auth and persists it the same way a real
-/// Keychain-backed token would be.
-struct Session: Codable, Equatable, Sendable {
-    let userId: String
-    let displayName: String
-    let email: String
-    let token: String
-}
-
-/// Single source of truth for authentication state. `RootView` observes
-/// `isAuthenticated` to switch between the auth flow and the main app.
+/// Single source of truth for authentication state, wrapped by
+/// `SessionRepository` for the domain layer. Holds the current `Session` (see
+/// `Domain/Model/Session.swift`) and persists it.
 ///
 /// Persistence uses `UserDefaults` for the demo; the store is the only place
 /// that touches it, so swapping in a Keychain wrapper later is a one-file change.

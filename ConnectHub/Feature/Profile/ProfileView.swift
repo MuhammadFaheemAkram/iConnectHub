@@ -39,7 +39,7 @@ struct ProfileView: View {
             .safeAreaInset(edge: .bottom) {
                 if isOwnProfile {
                     CHButton(title: "Log Out", style: .secondary) {
-                        environment.sessionStore.signOut()
+                        environment.logoutUseCase()
                     }
                     .padding(CHSpacing.lg)
                     .background(.bar)

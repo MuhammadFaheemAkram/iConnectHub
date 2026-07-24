@@ -2,7 +2,7 @@
 
 A mini social app for iOS — a simplified LinkedIn/Twitter-style feed with messaging — built as a portfolio-quality reference project. ConnectHub is fully offline: there is no real backend. Every network call is served by a fake service layer (bundled JSON + simulated latency) so the app is deterministic, testable, and runnable anywhere.
 
-> **Status:** Built in strict, documented phases. **Phase 1 (Foundation) is complete.** See the [Roadmap](#roadmap) for what each phase delivers and [`docs/`](docs/) for per-phase deep-dives.
+> **Status:** Built in strict, documented phases. **Phases 1–2 complete** (foundation + fake auth & session). See the [Roadmap](#roadmap) for what each phase delivers and [`docs/`](docs/) for per-phase deep-dives.
 
 ---
 
@@ -28,7 +28,7 @@ Planned end-state capabilities:
 | Phase | Feature area | State |
 |------:|--------------|-------|
 | 1 | Foundation: design system, DI, navigation, app shell | ✅ Complete |
-| 2 | Fake auth + persisted session | ⏳ Planned |
+| 2 | Fake auth + persisted session | ✅ Complete |
 | 3 | Feed + fake network + offline cache | ⏳ Planned |
 | 4 | Post detail, comments, create post | ⏳ Planned |
 | 5 | Search, bookmarks, profile, edit profile | ⏳ Planned |
@@ -145,7 +145,12 @@ xcodebuild -project ConnectHub.xcodeproj -scheme ConnectHub \
   -destination 'platform=iOS Simulator,name=iPhone 17' build
 ```
 
-On first launch you land on **Login**. In Phase 1, sign-in is a placeholder that seeds a demo session and drops you into the main app; the session persists across launches, and **Log Out** (Profile tab) clears it.
+On first launch you land on **Login**. Enter any valid-looking email and a 6+ character password to sign in (fake auth — no real backend); the session persists across launches, and **Log Out** (Profile tab) clears it. Signing in with `blocked@connecthub.app` demonstrates the error state. Run the tests with ⌘U or:
+
+```bash
+xcodebuild test -project ConnectHub.xcodeproj -scheme ConnectHub \
+  -destination 'platform=iOS Simulator,name=iPhone 17'
+```
 
 ---
 
@@ -172,6 +177,7 @@ From Phase 2, ConnectHub uses **Swift Testing** (`@Test`, `#expect`, `#require`)
 ## Documentation
 
 - [`docs/PHASE_1_SUMMARY.md`](docs/PHASE_1_SUMMARY.md) — Foundation phase deep-dive
+- [`docs/PHASE_2_SUMMARY.md`](docs/PHASE_2_SUMMARY.md) — Fake auth + session deep-dive
 - Additional per-phase summaries, `ARCHITECTURE.md`, `TESTING.md`, `LEARNING_NOTES.md`, `INTERVIEW_NOTES.md`, and `ROADMAP.md` are added by their respective phases.
 
 ## Screenshots

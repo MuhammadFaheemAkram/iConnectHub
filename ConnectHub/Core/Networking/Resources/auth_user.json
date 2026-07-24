@@ -1,0 +1,9 @@
+{
+  "id": "u_demo",
+  "name": "Demo User",
+  "email": "demo@connecthub.app",
+  "avatarURL": "https://i.pravatar.cc/300?img=12",
+  "bio": "Exploring ConnectHub — this profile is served from bundled JSON by the fake auth service.",
+  "followersCount": 128,
+  "followingCount": 87
+}

@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		AF000000000000000000000B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52E969A530137C64006869B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52E969AC30137C64006869B2;
+			remoteInfo = ConnectHub;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		52E969AD30137C64006869B2 /* ConnectHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConnectHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0000000000000000000001 /* ConnectHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConnectHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = ConnectHub;
 			sourceTree = "<group>";
 		};
+		AF0000000000000000000002 /* ConnectHubTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ConnectHubTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		52E969AA30137C64006869B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF0000000000000000000005 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				52E969AF30137C64006869B2 /* ConnectHub */,
+				AF0000000000000000000002 /* ConnectHubTests */,
 				52E969AE30137C64006869B2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				52E969AD30137C64006869B2 /* ConnectHub.app */,
+				AF0000000000000000000001 /* ConnectHubTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = 52E969AD30137C64006869B2 /* ConnectHub.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AF0000000000000000000003 /* ConnectHubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF0000000000000000000007 /* Build configuration list for PBXNativeTarget "ConnectHubTests" */;
+			buildPhases = (
+				AF0000000000000000000004 /* Sources */,
+				AF0000000000000000000005 /* Frameworks */,
+				AF0000000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF000000000000000000000A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AF0000000000000000000002 /* ConnectHubTests */,
+			);
+			name = ConnectHubTests;
+			packageProductDependencies = (
+			);
+			productName = ConnectHubTests;
+			productReference = AF0000000000000000000001 /* ConnectHubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					52E969AC30137C64006869B2 = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					AF0000000000000000000003 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 52E969AC30137C64006869B2;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				52E969AC30137C64006869B2 /* ConnectHub */,
+				AF0000000000000000000003 /* ConnectHubTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		52E969AB30137C64006869B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF0000000000000000000006 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AF0000000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF000000000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52E969AC30137C64006869B2 /* ConnectHub */;
+			targetProxy = AF000000000000000000000B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		52E969B630137C65006869B2 /* Debug */ = {
@@ -306,6 +381,44 @@
 			};
 			name = Release;
 		};
+		AF0000000000000000000008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BitFuse.ConnectHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConnectHub.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ConnectHub";
+			};
+			name = Debug;
+		};
+		AF0000000000000000000009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = BitFuse.ConnectHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConnectHub.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ConnectHub";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -323,6 +436,15 @@
 			buildConfigurations = (
 				52E969B930137C65006869B2 /* Debug */,
 				52E969BA30137C65006869B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF0000000000000000000007 /* Build configuration list for PBXNativeTarget "ConnectHubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF0000000000000000000008 /* Debug */,
+				AF0000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
