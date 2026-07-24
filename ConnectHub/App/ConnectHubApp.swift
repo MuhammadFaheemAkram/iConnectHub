@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ConnectHubApp: App {
@@ -16,6 +17,7 @@ struct ConnectHubApp: App {
         WindowGroup {
             RootView()
                 .environment(environment)
+                .modelContainer(environment.modelContainer)
         }
     }
 }

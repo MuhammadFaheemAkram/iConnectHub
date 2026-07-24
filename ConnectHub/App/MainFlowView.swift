@@ -11,12 +11,13 @@ import SwiftUI
 /// its own `NavigationStack`. The shared `Router` owns per-tab paths and the
 /// Create Post sheet, and is injected so any screen can drive navigation.
 struct MainFlowView: View {
+    @Environment(AppEnvironment.self) private var environment
     @State private var router = Router()
 
     var body: some View {
         @Bindable var router = router
         TabView(selection: $router.selectedTab) {
-            tabStack(.feed) { FeedView() }
+            tabStack(.feed) { FeedView(environment: environment) }
             tabStack(.search) { SearchView() }
             tabStack(.bookmarks) { BookmarksView() }
             tabStack(.notifications) { NotificationsView() }

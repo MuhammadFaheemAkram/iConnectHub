@@ -1,0 +1,137 @@
+[
+  {
+    "id": "p1",
+    "author": { "id": "u_ada", "name": "Ada Lovelace", "avatarURL": "https://i.pravatar.cc/300?img=5", "bio": "Enchantress of numbers.", "followersCount": 4820, "followingCount": 312 },
+    "content": "Just shipped the first pass of our analytical engine scheduler. Turns out the hardest part isn't the loops — it's naming them. 😅",
+    "imageURL": "https://picsum.photos/seed/connecthub1/600/400",
+    "createdAt": "2026-07-24T08:15:00Z",
+    "likeCount": 142,
+    "commentCount": 18
+  },
+  {
+    "id": "p2",
+    "author": { "id": "u_grace", "name": "Grace Hopper", "avatarURL": "https://i.pravatar.cc/300?img=9", "bio": "It's easier to ask forgiveness than permission.", "followersCount": 9120, "followingCount": 87 },
+    "content": "Reminder: the most dangerous phrase in the language is “we've always done it this way.” Refactor boldly.",
+    "imageURL": null,
+    "createdAt": "2026-07-24T06:40:00Z",
+    "likeCount": 512,
+    "commentCount": 64
+  },
+  {
+    "id": "p3",
+    "author": { "id": "u_alan", "name": "Alan Turing", "avatarURL": "https://i.pravatar.cc/300?img=12", "bio": "Can machines think?", "followersCount": 7340, "followingCount": 143 },
+    "content": "Spent the morning teaching my test suite to distinguish a real bug from a flaky one. We are not so different, it and I.",
+    "imageURL": "https://picsum.photos/seed/connecthub3/600/400",
+    "createdAt": "2026-07-23T19:05:00Z",
+    "likeCount": 271,
+    "commentCount": 33
+  },
+  {
+    "id": "p4",
+    "author": { "id": "u_katherine", "name": "Katherine Johnson", "avatarURL": "https://i.pravatar.cc/300?img=25", "bio": "Numbers get you to the moon.", "followersCount": 6210, "followingCount": 205 },
+    "content": "Double-checked the trajectory math by hand again. The computer was right this time — but I still sleep better having verified it.",
+    "imageURL": null,
+    "createdAt": "2026-07-23T14:22:00Z",
+    "likeCount": 398,
+    "commentCount": 41
+  },
+  {
+    "id": "p5",
+    "author": { "id": "u_linus", "name": "Linus T.", "avatarURL": "https://i.pravatar.cc/300?img=33", "bio": "Talk is cheap. Show me the code.", "followersCount": 15200, "followingCount": 12 },
+    "content": "Reviewed 47 pull requests today. 46 were fine. You know which one this post is about.",
+    "imageURL": null,
+    "createdAt": "2026-07-23T11:10:00Z",
+    "likeCount": 883,
+    "commentCount": 129
+  },
+  {
+    "id": "p6",
+    "author": { "id": "u_ada", "name": "Ada Lovelace", "avatarURL": "https://i.pravatar.cc/300?img=5", "bio": "Enchantress of numbers.", "followersCount": 4820, "followingCount": 312 },
+    "content": "Poetry and mathematics are the same discipline wearing different clothes. Change my mind.",
+    "imageURL": "https://picsum.photos/seed/connecthub6/600/400",
+    "createdAt": "2026-07-22T20:48:00Z",
+    "likeCount": 205,
+    "commentCount": 27
+  },
+  {
+    "id": "p7",
+    "author": { "id": "u_grace", "name": "Grace Hopper", "avatarURL": "https://i.pravatar.cc/300?img=9", "bio": "It's easier to ask forgiveness than permission.", "followersCount": 9120, "followingCount": 87 },
+    "content": "Found an actual moth in the logs today. Debugging is a proud and ancient tradition. 🦟",
+    "imageURL": null,
+    "createdAt": "2026-07-22T15:30:00Z",
+    "likeCount": 640,
+    "commentCount": 55
+  },
+  {
+    "id": "p8",
+    "author": { "id": "u_alan", "name": "Alan Turing", "avatarURL": "https://i.pravatar.cc/300?img=12", "bio": "Can machines think?", "followersCount": 7340, "followingCount": 143 },
+    "content": "A model that can imitate anyone is still not anyone. Keep that in mind as the demos get shinier.",
+    "imageURL": null,
+    "createdAt": "2026-07-22T09:12:00Z",
+    "likeCount": 456,
+    "commentCount": 72
+  },
+  {
+    "id": "p9",
+    "author": { "id": "u_katherine", "name": "Katherine Johnson", "avatarURL": "https://i.pravatar.cc/300?img=25", "bio": "Numbers get you to the moon.", "followersCount": 6210, "followingCount": 205 },
+    "content": "Mentored two new engineers this week. The best return on investment in this whole industry is patience.",
+    "imageURL": "https://picsum.photos/seed/connecthub9/600/400",
+    "createdAt": "2026-07-21T17:55:00Z",
+    "likeCount": 312,
+    "commentCount": 24
+  },
+  {
+    "id": "p10",
+    "author": { "id": "u_linus", "name": "Linus T.", "avatarURL": "https://i.pravatar.cc/300?img=33", "bio": "Talk is cheap. Show me the code.", "followersCount": 15200, "followingCount": 12 },
+    "content": "Good taste in code is mostly just caring about the person who reads it next. Often that person is you.",
+    "imageURL": null,
+    "createdAt": "2026-07-21T10:03:00Z",
+    "likeCount": 977,
+    "commentCount": 88
+  },
+  {
+    "id": "p11",
+    "author": { "id": "u_ada", "name": "Ada Lovelace", "avatarURL": "https://i.pravatar.cc/300?img=5", "bio": "Enchantress of numbers.", "followersCount": 4820, "followingCount": 312 },
+    "content": "The engine can only do what we know how to order it to perform. The imagination is the bottleneck, as always.",
+    "imageURL": null,
+    "createdAt": "2026-07-20T21:19:00Z",
+    "likeCount": 188,
+    "commentCount": 15
+  },
+  {
+    "id": "p12",
+    "author": { "id": "u_grace", "name": "Grace Hopper", "avatarURL": "https://i.pravatar.cc/300?img=9", "bio": "It's easier to ask forgiveness than permission.", "followersCount": 9120, "followingCount": 87 },
+    "content": "Shipped a nanosecond visualization for the new hires — a 30cm wire. Suddenly everyone cares about latency. 😄",
+    "imageURL": "https://picsum.photos/seed/connecthub12/600/400",
+    "createdAt": "2026-07-20T13:41:00Z",
+    "likeCount": 733,
+    "commentCount": 61
+  },
+  {
+    "id": "p13",
+    "author": { "id": "u_alan", "name": "Alan Turing", "avatarURL": "https://i.pravatar.cc/300?img=12", "bio": "Can machines think?", "followersCount": 7340, "followingCount": 143 },
+    "content": "We can only see a short distance ahead, but we can see plenty there that needs to be done.",
+    "imageURL": null,
+    "createdAt": "2026-07-19T18:27:00Z",
+    "likeCount": 521,
+    "commentCount": 47
+  },
+  {
+    "id": "p14",
+    "author": { "id": "u_katherine", "name": "Katherine Johnson", "avatarURL": "https://i.pravatar.cc/300?img=25", "bio": "Numbers get you to the moon.", "followersCount": 6210, "followingCount": 205 },
+    "content": "Like everyone else, I like to learn something new every day. Today it was a new SwiftData predicate trick.",
+    "imageURL": null,
+    "createdAt": "2026-07-19T09:50:00Z",
+    "likeCount": 244,
+    "commentCount": 19
+  },
+  {
+    "id": "p15",
+    "author": { "id": "u_linus", "name": "Linus T.", "avatarURL": "https://i.pravatar.cc/300?img=33", "bio": "Talk is cheap. Show me the code.", "followersCount": 15200, "followingCount": 12 },
+    "content": "Cache invalidation, naming things, and off-by-one errors. Anyway, welcome to ConnectHub.",
+    "imageURL": "https://picsum.photos/seed/connecthub15/600/400",
+    "createdAt": "2026-07-18T22:08:00Z",
+    "likeCount": 1290,
+    "commentCount": 156
+  }
+]

@@ -15,11 +15,12 @@ struct AuthDTO: Codable, Equatable, Sendable {
     let user: UserDTO
 }
 
-/// Wire model for a user profile.
+/// Wire model for a user profile. `email` is optional because it is only
+/// present on the authenticated user, not on the authors embedded in a feed.
 struct UserDTO: Codable, Equatable, Sendable {
     let id: String
     let name: String
-    let email: String
+    let email: String?
     let avatarURL: String?
     let bio: String?
     let followersCount: Int
