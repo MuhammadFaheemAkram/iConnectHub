@@ -1,0 +1,36 @@
+# SwiftLint configuration for ConnectHub.
+# Lenient by design — the app favors readable, explicit SwiftUI over terse code.
+
+included:
+  - ConnectHub
+  - ConnectHubTests
+
+excluded:
+  - build
+  - "**/*.generated.swift"
+
+# Rules that are noisy for a SwiftUI + declarative codebase.
+disabled_rules:
+  - line_length
+  - trailing_comma
+  - todo
+  - type_body_length
+  - file_length
+  - function_body_length
+  - function_parameter_count
+  - cyclomatic_complexity
+  - large_tuple
+  - nesting
+  - identifier_name
+  - for_where
+  - multiple_closures_with_trailing_closure
+
+opt_in_rules:
+  - empty_count
+  - first_where
+  - contains_over_first_not_nil
+  - toggle_bool
+  - closure_spacing
+
+force_cast: warning
+force_try: warning

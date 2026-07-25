@@ -2,7 +2,7 @@
 
 A mini social app for iOS — a simplified LinkedIn/Twitter-style feed with messaging — built as a portfolio-quality reference project. ConnectHub is fully offline: there is no real backend. Every network call is served by a fake service layer (bundled JSON + simulated latency) so the app is deterministic, testable, and runnable anywhere.
 
-> **Status:** Built in strict, documented phases. **Phases 1–6 complete** — the full feature set (foundation, fake auth & session, offline-first feed, post detail + comments + create post, search + bookmarks + profile, actor-backed chat + notifications + settings). Phase 7 finalizes the open-source docs and CI. See the [Roadmap](#roadmap) for what each phase delivers and [`docs/`](docs/) for per-phase deep-dives.
+> **Status:** ✅ **Complete** — built in seven strict, documented phases: foundation, fake auth & session, offline-first feed, post detail + comments + create post, search + bookmarks + profile, actor-backed chat + notifications + settings, and open-source polish. See the [Roadmap](#roadmap) for what each phase delivered and [`docs/`](docs/) for per-phase deep-dives.
 
 ---
 
@@ -170,7 +170,7 @@ SwiftData is a declarative wrapper over the Core Data stack. Each `@Model` class
 
 ## Testing
 
-From Phase 2, ConnectHub uses **Swift Testing** (`@Test`, `#expect`, `#require`) with protocol-based fakes and an in-memory `ModelContainer`. Coverage targets include auth validation, feed view-model state transitions, use cases (like/bookmark/create/comment), search debounce, the actor-backed message store under concurrent sends, and SwiftData round-trips.
+ConnectHub uses **Swift Testing** (`@Test`, `#expect`, `#require`) with protocol-based fakes and in-memory `ModelContainer`s — **95 tests across 23 suites**. Coverage includes auth validation, view-model state transitions, use cases (like/bookmark/create/comment), search, the actor-backed message store under 200 concurrent sends, notification read-state, and SwiftData round-trips. See [`docs/TESTING.md`](docs/TESTING.md).
 
 ---
 
@@ -182,30 +182,48 @@ From Phase 2, ConnectHub uses **Swift Testing** (`@Test`, `#expect`, `#require`)
 - [`docs/PHASE_4_SUMMARY.md`](docs/PHASE_4_SUMMARY.md) — Post detail, comments, and create post deep-dive
 - [`docs/PHASE_5_SUMMARY.md`](docs/PHASE_5_SUMMARY.md) — Search, bookmarks, and profile deep-dive
 - [`docs/PHASE_6_SUMMARY.md`](docs/PHASE_6_SUMMARY.md) — Actor-backed chat, notifications, and settings deep-dive
-- `ARCHITECTURE.md`, `TESTING.md`, `LEARNING_NOTES.md`, `INTERVIEW_NOTES.md`, and `ROADMAP.md` are finalized in Phase 7.
+
+**Guides:**
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — layers, dependency rule, offline-first & concurrency model
+- [`docs/TESTING.md`](docs/TESTING.md) — testing strategy and gotchas
+- [`docs/LEARNING_NOTES.md`](docs/LEARNING_NOTES.md) — every iOS/Swift concept, with where to find it
+- [`docs/INTERVIEW_NOTES.md`](docs/INTERVIEW_NOTES.md) — interview Q&A grounded in the code
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — completed phases + backlog
+- [`docs/SCREENSHOTS.md`](docs/SCREENSHOTS.md) — full visual tour
 
 ## Screenshots
 
-_Placeholder — captured in a later phase._
+| Feed | Post Detail | Chat |
+|------|-------------|------|
+| ![Feed](docs/screenshots/feed.png) | ![Post detail](docs/screenshots/post_detail.png) | ![Chat](docs/screenshots/chat.png) |
 
-| Login | Feed (shell) | Profile (shell) |
-|-------|--------------|-----------------|
-| _tbd_ | _tbd_ | _tbd_ |
+| Activity | Profile | Settings |
+|----------|---------|----------|
+| ![Notifications](docs/screenshots/notifications.png) | ![Profile](docs/screenshots/profile.png) | ![Settings](docs/screenshots/settings.png) |
+
+More in [`docs/SCREENSHOTS.md`](docs/SCREENSHOTS.md).
 
 ---
 
 ## Roadmap
 
+All seven phases are complete — see [`docs/ROADMAP.md`](docs/ROADMAP.md) for the details and the forward-looking backlog.
+
 1. **Foundation** — design system, DI, navigation, app shell ✅
-2. **Fake Auth + Session** — login/sign-up, persisted session
-3. **Feed + Fake Network + Offline Cache** — post list, like/bookmark, SwiftData
-4. **Post Detail + Comments + Create Post**
-5. **Search + Bookmarks + Profile**
-6. **Chat + Notifications + Settings** — actor-backed messaging
-7. **Open-Source Polish** — full docs set + CI
+2. **Fake Auth + Session** — login/sign-up, persisted session ✅
+3. **Feed + Fake Network + Offline Cache** — post list, like/bookmark, SwiftData ✅
+4. **Post Detail + Comments + Create Post** ✅
+5. **Search + Bookmarks + Profile** ✅
+6. **Chat + Notifications + Settings** — actor-backed messaging ✅
+7. **Open-Source Polish** — full docs set + CI ✅
 
 ---
 
+## Contributing
+
+Contributions are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md) and the [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md). Security policy: [`SECURITY.md`](SECURITY.md). Release history: [`CHANGELOG.md`](CHANGELOG.md).
+
 ## License
 
-Released under the MIT License. The `LICENSE` file and the remaining open-source repository files are finalized in Phase 7.
+Released under the [MIT License](LICENSE).
