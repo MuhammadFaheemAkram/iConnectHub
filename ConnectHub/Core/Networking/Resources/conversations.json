@@ -1,0 +1,23 @@
+[
+  {
+    "id": "c1",
+    "participant": { "id": "u_grace", "name": "Grace Hopper", "avatarURL": "https://i.pravatar.cc/300?img=9", "bio": "", "followersCount": 9120, "followingCount": 87 },
+    "lastMessage": "Approved with 12 comments, as tradition demands.",
+    "unreadCount": 2,
+    "updatedAt": "2026-07-24T10:45:00Z"
+  },
+  {
+    "id": "c2",
+    "participant": { "id": "u_alan", "name": "Alan Turing", "avatarURL": "https://i.pravatar.cc/300?img=12", "bio": "", "followersCount": 7340, "followingCount": 143 },
+    "lastMessage": "Can machines think? Asking for a friend.",
+    "unreadCount": 0,
+    "updatedAt": "2026-07-24T08:20:00Z"
+  },
+  {
+    "id": "c3",
+    "participant": { "id": "u_katherine", "name": "Katherine Johnson", "avatarURL": "https://i.pravatar.cc/300?img=25", "bio": "", "followersCount": 6210, "followingCount": 205 },
+    "lastMessage": "Double-checked the math — we're go for launch. 🚀",
+    "unreadCount": 1,
+    "updatedAt": "2026-07-23T21:05:00Z"
+  }
+]

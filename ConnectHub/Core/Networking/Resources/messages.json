@@ -1,0 +1,14 @@
+[
+  { "id": "m1", "conversationId": "c1", "senderId": "u_grace", "text": "Hey! Did you get a chance to look at the PR?", "createdAt": "2026-07-24T10:30:00Z", "isMine": false },
+  { "id": "m2", "conversationId": "c1", "senderId": "me", "text": "Just finished reviewing it — looks great overall.", "createdAt": "2026-07-24T10:38:00Z", "isMine": true },
+  { "id": "m3", "conversationId": "c1", "senderId": "u_grace", "text": "Amazing. Any blockers?", "createdAt": "2026-07-24T10:41:00Z", "isMine": false },
+  { "id": "m4", "conversationId": "c1", "senderId": "u_grace", "text": "Approved with 12 comments, as tradition demands.", "createdAt": "2026-07-24T10:45:00Z", "isMine": false },
+
+  { "id": "m5", "conversationId": "c2", "senderId": "me", "text": "Loved your post about imitation vs. understanding.", "createdAt": "2026-07-24T08:05:00Z", "isMine": true },
+  { "id": "m6", "conversationId": "c2", "senderId": "u_alan", "text": "Thank you! It's a distinction worth repeating.", "createdAt": "2026-07-24T08:12:00Z", "isMine": false },
+  { "id": "m7", "conversationId": "c2", "senderId": "u_alan", "text": "Can machines think? Asking for a friend.", "createdAt": "2026-07-24T08:20:00Z", "isMine": false },
+
+  { "id": "m8", "conversationId": "c3", "senderId": "u_katherine", "text": "Trajectory numbers are in.", "createdAt": "2026-07-23T20:50:00Z", "isMine": false },
+  { "id": "m9", "conversationId": "c3", "senderId": "me", "text": "Perfect timing. All checks out?", "createdAt": "2026-07-23T20:58:00Z", "isMine": true },
+  { "id": "m10", "conversationId": "c3", "senderId": "u_katherine", "text": "Double-checked the math — we're go for launch. 🚀", "createdAt": "2026-07-23T21:05:00Z", "isMine": false }
+]

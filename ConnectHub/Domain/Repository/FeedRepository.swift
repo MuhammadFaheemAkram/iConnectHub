@@ -28,4 +28,6 @@ protocol FeedRepository {
     func refresh(page: Int) async throws -> FeedRefreshResult
     func setLiked(postId: String, isLiked: Bool) throws
     func setBookmarked(postId: String, isBookmarked: Bool) throws
+    /// Deletes all cached posts and comments (Settings → Clear Cache).
+    func clearCache() throws
 }

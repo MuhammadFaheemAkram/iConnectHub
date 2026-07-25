@@ -74,6 +74,13 @@ final class DefaultFeedRepository: FeedRepository, PostRepository, BookmarkRepos
         emit(currentPosts())
     }
 
+    func clearCache() throws {
+        try context.delete(model: PostEntity.self)
+        try context.delete(model: CommentEntity.self)
+        try context.save()
+        emit(currentPosts())
+    }
+
     // MARK: - PostRepository
 
     func observePost(id: String) -> AsyncStream<Post?> {

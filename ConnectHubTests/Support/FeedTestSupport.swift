@@ -64,6 +64,8 @@ final class StubFeedRepository: FeedRepository {
     func setBookmarked(postId: String, isBookmarked: Bool) throws {
         bookmarkedCalls.append((postId, isBookmarked))
     }
+
+    func clearCache() throws {}
 }
 
 // MARK: - Sample factories

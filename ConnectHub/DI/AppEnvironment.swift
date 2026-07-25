@@ -46,6 +46,12 @@ final class AppEnvironment {
     let bookmarkRepository: BookmarkRepository
     let profileRepository: ProfileRepository
 
+    // Chat / notifications
+    let chatService: ChatService
+    let chatRepository: ChatRepository
+    let notificationService: NotificationService
+    let notificationRepository: NotificationRepository
+
     // Auth use cases
     let loginUseCase: LoginUseCase
     let signUpUseCase: SignUpUseCase
@@ -66,7 +72,11 @@ final class AppEnvironment {
         commentRepository: CommentRepository,
         searchRepository: SearchRepository,
         bookmarkRepository: BookmarkRepository,
-        profileRepository: ProfileRepository
+        profileRepository: ProfileRepository,
+        chatService: ChatService,
+        chatRepository: ChatRepository,
+        notificationService: NotificationService,
+        notificationRepository: NotificationRepository
     ) {
         self.modelContainer = modelContainer
         self.sessionStore = sessionStore
@@ -82,6 +92,10 @@ final class AppEnvironment {
         self.searchRepository = searchRepository
         self.bookmarkRepository = bookmarkRepository
         self.profileRepository = profileRepository
+        self.chatService = chatService
+        self.chatRepository = chatRepository
+        self.notificationService = notificationService
+        self.notificationRepository = notificationRepository
         self.loginUseCase = LoginUseCase(authRepository: authRepository, sessionRepository: sessionRepository)
         self.signUpUseCase = SignUpUseCase(authRepository: authRepository, sessionRepository: sessionRepository)
         self.logoutUseCase = LogoutUseCase(sessionRepository: sessionRepository)
@@ -95,6 +109,8 @@ final class AppEnvironment {
         let authService = FakeAuthService()
         let feedService = FakeFeedService()
         let commentService = FakeCommentService()
+        let chatService = FakeChatService()
+        let notificationService = FakeNotificationService()
         let sessionRepository = DefaultSessionRepository(store: sessionStore)
         // One repository backs the feed list, single posts, and bookmarks.
         let postsRepository = DefaultFeedRepository(service: feedService, container: modelContainer)
@@ -112,7 +128,11 @@ final class AppEnvironment {
             commentRepository: DefaultCommentRepository(service: commentService, container: modelContainer),
             searchRepository: DefaultSearchRepository(container: modelContainer),
             bookmarkRepository: postsRepository,
-            profileRepository: DefaultProfileRepository(sessionRepository: sessionRepository)
+            profileRepository: DefaultProfileRepository(sessionRepository: sessionRepository),
+            chatService: chatService,
+            chatRepository: DefaultChatRepository(service: chatService),
+            notificationService: notificationService,
+            notificationRepository: DefaultNotificationRepository(service: notificationService)
         )
     }
 
@@ -190,6 +210,41 @@ final class AppEnvironment {
         EditProfileViewModel(
             profile: profileRepository.currentProfile(),
             updateProfile: UpdateProfileUseCase(repository: profileRepository)
+        )
+    }
+
+    func makeChatListViewModel() -> ChatListViewModel {
+        ChatListViewModel(
+            observeConversations: ObserveConversationsUseCase(repository: chatRepository),
+            refreshConversations: RefreshConversationsUseCase(repository: chatRepository)
+        )
+    }
+
+    func makeChatDetailViewModel(conversationId: String) -> ChatDetailViewModel {
+        ChatDetailViewModel(
+            conversationId: conversationId,
+            observeMessages: ObserveMessagesUseCase(repository: chatRepository),
+            observeTyping: ObserveTypingUseCase(repository: chatRepository),
+            observeConversations: ObserveConversationsUseCase(repository: chatRepository),
+            loadMessages: LoadMessagesUseCase(repository: chatRepository),
+            sendMessage: SendMessageUseCase(repository: chatRepository),
+            markRead: MarkConversationReadUseCase(repository: chatRepository)
+        )
+    }
+
+    func makeNotificationsViewModel() -> NotificationsViewModel {
+        NotificationsViewModel(
+            observeNotifications: ObserveNotificationsUseCase(repository: notificationRepository),
+            refreshNotifications: RefreshNotificationsUseCase(repository: notificationRepository),
+            markRead: MarkNotificationReadUseCase(repository: notificationRepository),
+            markAllRead: MarkAllNotificationsReadUseCase(repository: notificationRepository)
+        )
+    }
+
+    func makeSettingsViewModel() -> SettingsViewModel {
+        SettingsViewModel(
+            clearCache: ClearCacheUseCase(feedRepository: feedRepository),
+            logout: logoutUseCase
         )
     }
 }

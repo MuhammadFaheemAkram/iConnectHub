@@ -20,7 +20,7 @@ struct MainFlowView: View {
             tabStack(.feed) { FeedView(environment: environment) }
             tabStack(.search) { SearchView(environment: environment) }
             tabStack(.bookmarks) { BookmarksView(environment: environment) }
-            tabStack(.notifications) { NotificationsView() }
+            tabStack(.notifications) { NotificationsView(environment: environment) }
             tabStack(.profile) { ProfileView(environment: environment) }
         }
         .tint(CHColor.brand)
@@ -55,11 +55,11 @@ struct MainFlowView: View {
         case .userProfile(let id):
             ProfileView(environment: environment, userId: id)
         case .chatList:
-            ChatListView()
+            ChatListView(environment: environment)
         case .chatDetail(let conversationId):
-            ChatDetailView(conversationId: conversationId)
+            ChatDetailView(environment: environment, conversationId: conversationId)
         case .settings:
-            SettingsView()
+            SettingsView(environment: environment)
         }
     }
 }

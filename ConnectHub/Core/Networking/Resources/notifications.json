@@ -1,0 +1,10 @@
+[
+  { "id": "n1", "kind": "like", "text": "Grace Hopper liked your post about offline-first architecture.", "createdAt": "2026-07-24T11:10:00Z", "isRead": false },
+  { "id": "n2", "kind": "comment", "text": "Alan Turing commented: \"Great question — let me think about that.\"", "createdAt": "2026-07-24T10:35:00Z", "isRead": false },
+  { "id": "n3", "kind": "follow", "text": "Katherine Johnson started following you.", "createdAt": "2026-07-24T09:50:00Z", "isRead": false },
+  { "id": "n4", "kind": "mention", "text": "Linus T. mentioned you in a comment: \"@you nailed the caching design.\"", "createdAt": "2026-07-24T08:15:00Z", "isRead": true },
+  { "id": "n5", "kind": "like", "text": "Ada Lovelace and 24 others liked your post.", "createdAt": "2026-07-23T19:40:00Z", "isRead": true },
+  { "id": "n6", "kind": "comment", "text": "Grace Hopper replied to your comment.", "createdAt": "2026-07-23T17:22:00Z", "isRead": true },
+  { "id": "n7", "kind": "follow", "text": "Alan Turing started following you.", "createdAt": "2026-07-23T14:05:00Z", "isRead": true },
+  { "id": "n8", "kind": "mention", "text": "Katherine Johnson mentioned you in a post.", "createdAt": "2026-07-22T20:30:00Z", "isRead": true }
+]
