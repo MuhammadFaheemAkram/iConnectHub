@@ -7,13 +7,17 @@ on:
     branches: [ main ]
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build-and-test:
     name: Build & Test
-    runs-on: macos-15
+    runs-on: macos-26
+    env:
+      SCHEME: ConnectHub
+      # Adjust the device name to one available on the runner image if needed.
+      DESTINATION: 'platform=iOS Simulator,name=iPhone 17,OS=latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,14 +30,22 @@ jobs:
           xcodebuild -version
           swift --version
 
-      - name: Build and test
+      - name: Build
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project ConnectHub.xcodeproj \
+            -scheme "$SCHEME" \
+            -destination "$DESTINATION" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Test
         run: |
           set -o pipefail
           xcodebuild test \
             -project ConnectHub.xcodeproj \
-            -scheme ConnectHub \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
-            -derivedDataPath build/DerivedData \
+            -scheme "$SCHEME" \
+            -destination "$DESTINATION" \
             CODE_SIGNING_ALLOWED=NO
 
   lint:
